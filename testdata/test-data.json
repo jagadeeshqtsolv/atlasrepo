@@ -1,1 +1,22 @@
-{}
+{
+  "searchUserInputFiltersTableByNameCaseInsensitivePartialMatch": {
+    "typeTestuserinvite1InSearchUserInput": "testuserinvite1"
+  },
+  "searchUserInputWithNoMatchesShowsNoUsersFoundMessage": {
+    "typeZzznomatchInSearchUserInput": "zzznomatch"
+  },
+  "searchResetsPaginationToPage1WhenQueryChanges": {
+    "typeTestInSearchUserInput": "test",
+    "typeAInSearchUserInput": "a"
+  },
+  "nUsersCountLabelDoesNotChangeDuringFiltering": {
+    "typeTestInSearchUserInput": "test",
+    "typeAInSearchUserInput": "a"
+  },
+  "searchUserByNameFiltersTableInRealTimeCaseInsensitivePartialMatch": {
+    "typeTestuserinvite1InSearchUserInput": "testuserinvite1"
+  },
+  "searchUserWithNoResultsShowsEmptyStateMessageAndKeepsHeader": {
+    "typeZzznomatchInSearchUserInput": "zzznomatch"
+  }
+}

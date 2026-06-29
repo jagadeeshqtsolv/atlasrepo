@@ -53,7 +53,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
 
       - name: Configure Autonix registry
         run: |
@@ -61,7 +60,7 @@ jobs:
           npm config set "//artifact-keeper.qtsolvdev.com/npm/qa-automation-libraries/:_authToken" "$AUTONIX_REGISTRY_TOKEN"
 
       - name: Install dependencies
-        run: npm ci
+        run: if [ -f package-lock.json ]; then npm ci; else npm install; fi
 
       - name: Write auth state
         if: ${{ inputs.auth_state_url != '' && inputs.auth_state_filename != '' }}

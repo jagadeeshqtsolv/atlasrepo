@@ -1,0 +1,58 @@
+{
+  "id": "account-access-toggle-on-to-off-confirm",
+  "testPlanId": "f4a2e274-f41b-496c-821d-7452a94501f1",
+  "requirementId": "908f1846-7913-4d2d-8e70-8e5bc11bdcbd",
+  "suiteName": "Admin — User Management SMOKE",
+  "case": {
+    "id": "account-access-toggle-on-to-off-confirm",
+    "title": "Clicking ON toggle opens confirmation, revoke sets toggle OFF and status to Inactive",
+    "priority": "P0",
+    "platforms": [
+      "chrome"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "step1",
+        "action": "openUrl",
+        "targetDescription": "Navigate to admin page",
+        "value": "https://qa-atlas.qtsolvdev.com/admin"
+      },
+      {
+        "id": "step2",
+        "action": "tap",
+        "targetDescription": "Click ON toggle for active user",
+        "locatorHint": "[data-testid='user-toggle-on']"
+      },
+      {
+        "id": "step3",
+        "action": "assertVisible",
+        "targetDescription": "Confirmation dialog appears with Revoke button",
+        "locatorHint": "[role='dialog']"
+      },
+      {
+        "id": "step4",
+        "action": "tap",
+        "targetDescription": "Click Revoke button",
+        "locatorHint": "button:has-text('Revoke')"
+      },
+      {
+        "id": "step5",
+        "action": "assertVisible",
+        "targetDescription": "Toggle is now OFF",
+        "locatorHint": "[data-testid='user-toggle-off']"
+      },
+      {
+        "id": "step6",
+        "action": "assertText",
+        "targetDescription": "Status badge is now Inactive",
+        "locatorHint": "[data-testid='user-status-inactive']",
+        "assertion": "Inactive"
+      }
+    ],
+    "tags": [
+      "@smoke",
+      "@regression"
+    ]
+  }
+}

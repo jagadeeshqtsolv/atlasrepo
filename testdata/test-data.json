@@ -1,1 +1,14 @@
-{}
+{
+  "searchUserInputFiltersTableByNameCaseInsensitivePartialMatch": {
+    "typeTestuserinvite1InSearchUserInput": "testuserinvite1"
+  },
+  "searchUserInputWithNoMatchesShowsNoUsersFoundMessage": {
+    "typeZzznomatchInSearchUserInput": "zzznomatch"
+  },
+  "searchResetsPaginationToPage1WhenQueryChanges": {
+    "typeAInSearchUserInput": "a"
+  },
+  "nUsersCountLabelDoesNotChangeDuringFiltering": {
+    "typeAInSearchUserInput": "a"
+  }
+}

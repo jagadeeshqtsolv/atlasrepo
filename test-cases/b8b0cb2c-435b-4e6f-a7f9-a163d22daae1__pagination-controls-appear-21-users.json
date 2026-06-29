@@ -1,0 +1,33 @@
+{
+  "id": "pagination-controls-appear-21-users",
+  "testPlanId": "b8b0cb2c-435b-4e6f-a7f9-a163d22daae1",
+  "requirementId": "908f1846-7913-4d2d-8e70-8e5bc11bdcbd",
+  "suiteName": "Admin — User Management SMOKE",
+  "case": {
+    "id": "pagination-controls-appear-21-users",
+    "title": "Pagination controls appear when there are 21 users",
+    "priority": "P0",
+    "platforms": [
+      "chrome"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "step1",
+        "action": "openUrl",
+        "targetDescription": "Navigate to admin page with 21 users",
+        "value": "https://qa-atlas.qtsolvdev.com/admin"
+      },
+      {
+        "id": "step2",
+        "action": "assertVisible",
+        "targetDescription": "Pagination controls are visible below the table",
+        "locatorHint": "[data-testid='pagination-controls']"
+      }
+    ],
+    "tags": [
+      "@smoke",
+      "@regression"
+    ]
+  }
+}

@@ -1,0 +1,759 @@
+{
+  "id": "b8b0cb2c-435b-4e6f-a7f9-a163d22daae1",
+  "requirementId": "908f1846-7913-4d2d-8e70-8e5bc11bdcbd",
+  "model": "gpt-4.1",
+  "createdAt": "2026-06-29T12:08:16.326Z",
+  "plan": {
+    "version": 1,
+    "suiteName": "Admin — User Management SMOKE",
+    "cases": [
+      {
+        "id": "login-salesforce",
+        "title": "Login via Salesforce and land on /admin",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to admin page",
+            "value": "https://qa-atlas.qtsolvdev.com/admin"
+          },
+          {
+            "id": "step2",
+            "action": "tap",
+            "targetDescription": "Click Salesforce login button",
+            "locatorHint": "button:has-text('Salesforce Login')"
+          },
+          {
+            "id": "step3",
+            "action": "assertVisible",
+            "targetDescription": "User Management tab is visible and active",
+            "locatorHint": "tab[aria-selected='true'][name='User Management']"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "default-tab-user-management",
+        "title": "User Management tab is active by default with correct columns and user count",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to admin page",
+            "value": "https://qa-atlas.qtsolvdev.com/admin"
+          },
+          {
+            "id": "step2",
+            "action": "assertVisible",
+            "targetDescription": "User Management tab is active",
+            "locatorHint": "tab[aria-selected='true'][name='User Management']"
+          },
+          {
+            "id": "step3",
+            "action": "assertText",
+            "targetDescription": "Tabs are rendered in correct order",
+            "locatorHint": "tablist",
+            "assertion": "User ManagementRoles & AccessAudit Log"
+          },
+          {
+            "id": "step4",
+            "action": "assertVisible",
+            "targetDescription": "\"N Users\" count label is visible",
+            "locatorHint": "[data-testid='user-count-label']"
+          },
+          {
+            "id": "step5",
+            "action": "assertVisible",
+            "targetDescription": "Search user input is visible with correct placeholder",
+            "locatorHint": "input[placeholder='Search user']"
+          },
+          {
+            "id": "step6",
+            "action": "assertVisible",
+            "targetDescription": "Invite user button is visible",
+            "locatorHint": "button:has-text('Invite user')"
+          },
+          {
+            "id": "step7",
+            "action": "assertText",
+            "targetDescription": "Table columns are correct and in order",
+            "locatorHint": "thead tr",
+            "assertion": "User informationRoleStatusLast activeAccount Access"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "user-info-cell-avatar-name-email",
+        "title": "User information cell renders avatar, name, and email correctly",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to admin page",
+            "value": "https://qa-atlas.qtsolvdev.com/admin"
+          },
+          {
+            "id": "step2",
+            "action": "assertVisible",
+            "targetDescription": "Avatar is visible (photo or initials)",
+            "locatorHint": "[data-testid='user-avatar']"
+          },
+          {
+            "id": "step3",
+            "action": "assertVisible",
+            "targetDescription": "Full name is bold on first line",
+            "locatorHint": "[data-testid='user-fullname']"
+          },
+          {
+            "id": "step4",
+            "action": "assertVisible",
+            "targetDescription": "Email is visible in muted text on second line",
+            "locatorHint": "[data-testid='user-email']"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "user-info-cell-email-only",
+        "title": "User information cell renders correctly for email-only user (no name)",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to admin page",
+            "value": "https://qa-atlas.qtsolvdev.com/admin"
+          },
+          {
+            "id": "step2",
+            "action": "assertVisible",
+            "targetDescription": "Avatar shows initials from email prefix",
+            "locatorHint": "[data-testid='user-avatar-email-only']"
+          },
+          {
+            "id": "step3",
+            "action": "assertText",
+            "targetDescription": "Email is shown on first line only",
+            "locatorHint": "[data-testid='user-info-email-only']",
+            "assertion": "testuserinvite1@example.com"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "role-cell-labels",
+        "title": "Role cell shows correct plain text role label",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to admin page",
+            "value": "https://qa-atlas.qtsolvdev.com/admin"
+          },
+          {
+            "id": "step2",
+            "action": "assertText",
+            "targetDescription": "Role cell shows 'Admin', 'Finance', 'Business', or other",
+            "locatorHint": "[data-testid='user-role-cell']",
+            "assertion": "Admin"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "status-cell-badges",
+        "title": "Status cell shows correct badge for active and inactive users",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to admin page",
+            "value": "https://qa-atlas.qtsolvdev.com/admin"
+          },
+          {
+            "id": "step2",
+            "action": "assertVisible",
+            "targetDescription": "Active user shows green 'Active' badge",
+            "locatorHint": "[data-testid='user-status-active']"
+          },
+          {
+            "id": "step3",
+            "action": "assertVisible",
+            "targetDescription": "Inactive user shows red 'Inactive' badge",
+            "locatorHint": "[data-testid='user-status-inactive']"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "last-active-cell-values",
+        "title": "Last active cell shows relative time or 'Never' as appropriate",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to admin page",
+            "value": "https://qa-atlas.qtsolvdev.com/admin"
+          },
+          {
+            "id": "step2",
+            "action": "assertContainsText",
+            "targetDescription": "Last active cell shows relative time string",
+            "locatorHint": "[data-testid='user-last-active']",
+            "assertion": "ago"
+          },
+          {
+            "id": "step3",
+            "action": "assertText",
+            "targetDescription": "Last active cell shows 'Never' for users who never logged in",
+            "locatorHint": "[data-testid='user-last-active-never']",
+            "assertion": "Never"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "account-access-toggle-on-to-off",
+        "title": "Revoke account access for active user (toggle ON to OFF with confirmation)",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to admin page",
+            "value": "https://qa-atlas.qtsolvdev.com/admin"
+          },
+          {
+            "id": "step2",
+            "action": "tap",
+            "targetDescription": "Click ON toggle for active user",
+            "locatorHint": "[data-testid='account-access-toggle-on']"
+          },
+          {
+            "id": "step3",
+            "action": "assertVisible",
+            "targetDescription": "Confirmation dialog appears",
+            "locatorHint": "[role='dialog']"
+          },
+          {
+            "id": "step4",
+            "action": "tap",
+            "targetDescription": "Click 'Revoke' button in dialog",
+            "locatorHint": "button:has-text('Revoke')"
+          },
+          {
+            "id": "step5",
+            "action": "assertVisible",
+            "targetDescription": "Toggle changes to OFF",
+            "locatorHint": "[data-testid='account-access-toggle-off']"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "account-access-toggle-cancel-revoke",
+        "title": "Cancel access revocation leaves toggle ON and user unchanged",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to admin page",
+            "value": "https://qa-atlas.qtsolvdev.com/admin"
+          },
+          {
+            "id": "step2",
+            "action": "tap",
+            "targetDescription": "Click ON toggle for active user",
+            "locatorHint": "[data-testid='account-access-toggle-on']"
+          },
+          {
+            "id": "step3",
+            "action": "assertVisible",
+            "targetDescription": "Confirmation dialog appears",
+            "locatorHint": "[role='dialog']"
+          },
+          {
+            "id": "step4",
+            "action": "tap",
+            "targetDescription": "Click 'Cancel' button in dialog",
+            "locatorHint": "button:has-text('Cancel')"
+          },
+          {
+            "id": "step5",
+            "action": "assertVisible",
+            "targetDescription": "Toggle remains ON",
+            "locatorHint": "[data-testid='account-access-toggle-on']"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "account-access-toggle-off-to-on",
+        "title": "Re-enable access for user (toggle OFF to ON, no confirmation)",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to admin page",
+            "value": "https://qa-atlas.qtsolvdev.com/admin"
+          },
+          {
+            "id": "step2",
+            "action": "tap",
+            "targetDescription": "Click OFF toggle for inactive user",
+            "locatorHint": "[data-testid='account-access-toggle-off']"
+          },
+          {
+            "id": "step3",
+            "action": "assertVisible",
+            "targetDescription": "Toggle changes to ON immediately",
+            "locatorHint": "[data-testid='account-access-toggle-on']"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "admin-row-toggle-disabled-tooltip",
+        "title": "Admin's own row: toggle is disabled and shows tooltip on hover",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to admin page",
+            "value": "https://qa-atlas.qtsolvdev.com/admin"
+          },
+          {
+            "id": "step2",
+            "action": "assertDisabled",
+            "targetDescription": "Admin's own Account Access toggle is disabled",
+            "locatorHint": "[data-testid='account-access-toggle-self']"
+          },
+          {
+            "id": "step3",
+            "action": "hover",
+            "targetDescription": "Hover over admin's own toggle",
+            "locatorHint": "[data-testid='account-access-toggle-self']"
+          },
+          {
+            "id": "step4",
+            "action": "assertText",
+            "targetDescription": "Tooltip appears with correct message",
+            "locatorHint": "[role='tooltip']",
+            "assertion": "You cannot revoke your own access."
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "search-user-by-name",
+        "title": "Search user by name filters table in real time (case-insensitive, partial match)",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to admin page",
+            "value": "https://qa-atlas.qtsolvdev.com/admin"
+          },
+          {
+            "id": "step2",
+            "action": "fill",
+            "targetDescription": "Type 'testuserinvite1' in Search user input",
+            "locatorHint": "input[placeholder='Search user']",
+            "value": "testuserinvite1"
+          },
+          {
+            "id": "step3",
+            "action": "assertContainsText",
+            "targetDescription": "Table shows only users matching 'testuserinvite1'",
+            "locatorHint": "tbody",
+            "assertion": "testuserinvite1"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "search-user-no-results",
+        "title": "Search user with no results shows empty state message and keeps header",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to admin page",
+            "value": "https://qa-atlas.qtsolvdev.com/admin"
+          },
+          {
+            "id": "step2",
+            "action": "fill",
+            "targetDescription": "Type 'zzznomatch' in Search user input",
+            "locatorHint": "input[placeholder='Search user']",
+            "value": "zzznomatch"
+          },
+          {
+            "id": "step3",
+            "action": "assertText",
+            "targetDescription": "Table body shows no results message",
+            "locatorHint": "tbody tr td",
+            "assertion": "No users found for 'zzznomatch'."
+          },
+          {
+            "id": "step4",
+            "action": "assertVisible",
+            "targetDescription": "Table header row remains visible",
+            "locatorHint": "thead tr"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "search-user-pagination-reset",
+        "title": "Search resets pagination to page 1 when query changes",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to admin page with >20 users",
+            "value": "https://qa-atlas.qtsolvdev.com/admin"
+          },
+          {
+            "id": "step2",
+            "action": "tap",
+            "targetDescription": "Click page 2 in pagination controls",
+            "locatorHint": "button:has-text('2')"
+          },
+          {
+            "id": "step3",
+            "action": "fill",
+            "targetDescription": "Type 'test' in Search user input",
+            "locatorHint": "input[placeholder='Search user']",
+            "value": "test"
+          },
+          {
+            "id": "step4",
+            "action": "assertText",
+            "targetDescription": "Pagination is reset to page 1",
+            "locatorHint": "button[aria-current='page']",
+            "assertion": "1"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "user-count-label-not-filtered",
+        "title": "\"N Users\" count label does not change during filtering",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to admin page",
+            "value": "https://qa-atlas.qtsolvdev.com/admin"
+          },
+          {
+            "id": "step2",
+            "action": "assertText",
+            "targetDescription": "Read N Users count before filtering",
+            "locatorHint": "[data-testid='user-count-label']"
+          },
+          {
+            "id": "step3",
+            "action": "fill",
+            "targetDescription": "Type 'test' in Search user input",
+            "locatorHint": "input[placeholder='Search user']",
+            "value": "test"
+          },
+          {
+            "id": "step4",
+            "action": "assertText",
+            "targetDescription": "N Users count label remains unchanged",
+            "locatorHint": "[data-testid='user-count-label']"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "pagination-controls-appear-21-users",
+        "title": "Pagination controls appear when there are 21 users",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to admin page with 21 users",
+            "value": "https://qa-atlas.qtsolvdev.com/admin"
+          },
+          {
+            "id": "step2",
+            "action": "assertVisible",
+            "targetDescription": "Pagination controls are visible below the table",
+            "locatorHint": "[data-testid='pagination-controls']"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "pagination-controls-not-appear-20-users",
+        "title": "Pagination controls do not appear when there are exactly 20 users",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to admin page with 20 users",
+            "value": "https://qa-atlas.qtsolvdev.com/admin"
+          },
+          {
+            "id": "step2",
+            "action": "assertHidden",
+            "targetDescription": "Pagination controls are not visible",
+            "locatorHint": "[data-testid='pagination-controls']"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "pagination-next-page",
+        "title": "Clicking Next in pagination shows next set of users",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to admin page with >20 users",
+            "value": "https://qa-atlas.qtsolvdev.com/admin"
+          },
+          {
+            "id": "step2",
+            "action": "tap",
+            "targetDescription": "Click 'Next' in pagination controls",
+            "locatorHint": "button:has-text('Next')"
+          },
+          {
+            "id": "step3",
+            "action": "assertText",
+            "targetDescription": "Pagination shows page 2 as current",
+            "locatorHint": "button[aria-current='page']",
+            "assertion": "2"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "tab-switching-user-management-roles-access",
+        "title": "Switch between User Management and Roles & Access tabs",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to admin page",
+            "value": "https://qa-atlas.qtsolvdev.com/admin"
+          },
+          {
+            "id": "step2",
+            "action": "tap",
+            "targetDescription": "Click 'Roles & Access' tab",
+            "locatorHint": "tab[name='Roles & Access']"
+          },
+          {
+            "id": "step3",
+            "action": "assertVisible",
+            "targetDescription": "Roles & Access view is rendered",
+            "locatorHint": "[data-testid='roles-access-view']"
+          },
+          {
+            "id": "step4",
+            "action": "tap",
+            "targetDescription": "Click 'User Management' tab",
+            "locatorHint": "tab[name='User Management']"
+          },
+          {
+            "id": "step5",
+            "action": "assertVisible",
+            "targetDescription": "User Management table is visible again",
+            "locatorHint": "[data-testid='user-table']"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "table-scrollable-with-many-users",
+        "title": "Table is scrollable when user count exceeds viewport height",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to admin page with >20 users",
+            "value": "https://qa-atlas.qtsolvdev.com/admin"
+          },
+          {
+            "id": "step2",
+            "action": "scrollIntoView",
+            "targetDescription": "Scroll user table to bottom",
+            "locatorHint": "[data-testid='user-table']"
+          },
+          {
+            "id": "step3",
+            "action": "assertVisible",
+            "targetDescription": "Last row is visible after scrolling",
+            "locatorHint": "tbody tr:last-child"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      }
+    ]
+  }
+}
